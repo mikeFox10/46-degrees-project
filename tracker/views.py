@@ -8,6 +8,7 @@ from .models import User, Iou
 from django.db.models import Q
 from django.http import JsonResponse
 from datetime import date, datetime
+import json
 # Create your views here.
 
 class UserApiView(APIView):
@@ -27,7 +28,7 @@ class UserApiView(APIView):
 
 class IOUExpiredApiView(APIView):
     serializer_class = serializers.IOUSerializer
-    def get(self, request):
+    def post(self, request):
         today = datetime.now()
         queryset = Iou.objects.filter(expiration__lte = today )
         serializer = serializers.IOUSerializer(queryset, many=True)
@@ -62,8 +63,8 @@ class SettleupApiView(APIView):
             payload = request.GET['payload']
 
         if (payload):
-            #response = Iou.objects.select_related('lender').order_by('lender__user')
-            response = User.objects.order_by('user')
+            payload = json.loads(payload)
+            response = User.objects.order_by('user').filter(user__in=payload['users'])
             return Response({'users' : self.process_queryset(response)})
 
         else:

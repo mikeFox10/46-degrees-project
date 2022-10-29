@@ -40,5 +40,6 @@ pytest
 http://localhost:8000/doc/
 
 
+### CURL examples
 
-
+[Example requests](CURL_examples.md)
