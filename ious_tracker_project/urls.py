@@ -26,9 +26,9 @@ schema_view = get_schema_view(
     openapi.Info(
         title="IOUS API",
         default_version='v1',
-        description="Welcome to the world of Jaseci",
-        terms_of_service="https://www.jaseci.org",
-        contact=openapi.Contact(email="jason@jaseci.org"),
+        description="Welcome to the world IOUs 46 degrees",
+        terms_of_service="https://www.example.org",
+        contact=openapi.Contact(email="mruiz.info@gmail.org"),
         license=openapi.License(name="Awesome IP"),
     ),
     public=True,

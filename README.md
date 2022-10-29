@@ -3,8 +3,8 @@
 ## technologies
 - Django Rest Framework
 - Sqlite
+- swagger
 - pytest
-
 ### Instalation
 create virtual environment 
 
@@ -12,7 +12,7 @@ create virtual environment
 virtualenv -p python3.9 env
 ```
 
-```
+```cosu
 pip install -r requirements.txt 
 ```
 
@@ -35,6 +35,9 @@ pytest
 ```
 
 
+### url swagger documentation
+
+http://localhost:8000/doc/
 
 
 
