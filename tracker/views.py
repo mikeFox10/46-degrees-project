@@ -7,7 +7,7 @@ from rest_framework import status, viewsets
 from .models import User, Iou
 from django.db.models import Q
 from django.http import JsonResponse
-
+from datetime import date, datetime
 # Create your views here.
 
 class UserApiView(APIView):
@@ -25,8 +25,17 @@ class UserApiView(APIView):
             )
 
 
+class IOUExpiredApiView(APIView):
+    serializer_class = serializers.IOUSerializer
+    def get(self, request):
+        today = datetime.now()
+        queryset = Iou.objects.filter(expiration__lte = today )
+        serializer = serializers.IOUSerializer(queryset, many=True)
+        return Response(serializer.data)
+
 class IOUApiView(APIView):
     serializer_class = serializers.IOUSerializer
+    
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():

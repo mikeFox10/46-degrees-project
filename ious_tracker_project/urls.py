@@ -21,5 +21,6 @@ urlpatterns = [
     path('add', views.UserApiView.as_view()),
     path('iou', views.IOUApiView.as_view()),
     path('settleup', views.SettleupApiView.as_view()),
-    
+    path('settleup', views.SettleupApiView.as_view()),
+    path('expired_iou', views.IOUExpiredApiView.as_view()),
 ]

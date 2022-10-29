@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from django_restql.mixins import DynamicFieldsMixin
 from .models import User, Iou
 
 class UserSerializer(serializers.ModelSerializer):
@@ -7,7 +7,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['user']
 
-class IOUSerializer(serializers.ModelSerializer):
+class IOUSerializer(DynamicFieldsMixin, serializers.ModelSerializer):
     amount = serializers.DecimalField(decimal_places=2, max_digits=30, min_value=0.01)
     class Meta:
         model = Iou

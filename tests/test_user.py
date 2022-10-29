@@ -11,6 +11,16 @@ def test_add_user():
     response = client.post('/add', payload)
     assert response.status_code == 200
     data = response.data
-    print(data)
     assert len(data) == 1
     assert data['user'] == payload['user']
+
+
+
+@pytest.mark.django_db
+def test_fail_add_user():
+    payload = dict(
+        user = 'new user'
+    )
+    client.post('/add', payload)
+    response = client.post('/add', payload)
+    assert response.status_code == 400

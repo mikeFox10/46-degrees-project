@@ -5,7 +5,7 @@ import json
 client = APIClient()
 
 @pytest.mark.django_db
-def test_add_users_and_ious():
+def test_consolided_list_data_balance():
     users = ['test_user_1', 'test_user_2','test_user_3']
     # adding users
     for user in users:
@@ -57,9 +57,3 @@ def test_add_users_and_ious():
             assert expected_output_test_2 == debt
         elif debt.get('name') == 'test_user_3':
             assert expected_output_test_3 == debt
-
-
-    # data = json.dumps(response.data, sort_keys=True)
-
-
-    
